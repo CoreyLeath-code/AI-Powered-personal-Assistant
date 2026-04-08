@@ -26,8 +26,8 @@ jobs:
 
     - name: Run Lint and Tests
       run: |
-        echo "🔍 Running tests (placeholder)"
-        # pytest tests/ --maxfail=1 --disable-warnings
+        pip install pytest
+        pytest tests/ --maxfail=5 --disable-warnings -v
 
     - name: Build Docker Image
       run: |
