@@ -1,19 +1,19 @@
-# tests/test_main.py
-import pytest
-from assistant import main
+"""
+main.py — Entry Point
+---------------------
+Launch the AI-Powered Personal Assistant interactively.
+Delegates to assistant/main.py for core logic.
+"""
 
-def test_process_user_input_with_schedule(monkeypatch):
-    monkeypatch.setattr(main.scheduler, "handle_schedule", lambda x: "Scheduled reminder for 3pm")
-    input_text = "Remind me to study at 3pm"
-    result = main.process_user_input(input_text)
-    assert "Scheduled reminder" in result
+from assistant.main import process_user_input
 
-def test_process_user_input_with_question(monkeypatch):
-    monkeypatch.setattr(main.qa, "answer_query", lambda x: "This is a mock answer.")
-    input_text = "What is the revenue forecast?"
-    result = main.process_user_input(input_text)
-    assert "mock answer" in result
-
-def test_process_user_input_with_empty(monkeypatch):
-    result = main.process_user_input("")
-    assert result == "I'm sorry, I didn't understand that."
+if __name__ == "__main__":
+    print("🤖 AI Assistant (type 'exit' to quit)")
+    print("--------------------------------------")
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() in ["exit", "quit"]:
+            print("👋 Goodbye!")
+            break
+        response = process_user_input(user_input)
+        print(f"Assistant: {response}")

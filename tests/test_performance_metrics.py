@@ -1,11 +1,16 @@
 # tests/test_performance_metrics.py
 import time
+import pytest
+from unittest.mock import patch
 from assistant.main import process_user_input
 
-def test_openai_latency():
+
+def test_response_latency(monkeypatch):
+    """Verify process_user_input responds quickly (no live API calls)."""
+    monkeypatch.setattr("assistant.main.answer_query", lambda x: "Paris is the capital of France.")
     input_text = "What is the capital of France?"
     start = time.time()
-    process_user_input(input_text)
-    end = time.time()
-    latency = end - start
-    assert latency < 4, f"Response took too long: {latency:.2f}s"
+    result = process_user_input(input_text)
+    elapsed = time.time() - start
+    assert elapsed < 1, f"Response took too long: {elapsed:.2f}s"
+    assert result == "Paris is the capital of France."
