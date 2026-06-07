@@ -1,6 +1,8 @@
+[![Actions Status](https://img.shields.io/badge/GitHub%20Actions-View-blue?logo=github)](https://github.com/Trojan3877/AI-Powered-personal-Assistant/actions) [![Release](https://img.shields.io/github/v/release/Trojan3877/AI-Powered-personal-Assistant?include_prereleases)](https://github.com/Trojan3877/AI-Powered-personal-Assistant/releases) [![License](https://img.shields.io/github/license/Trojan3877/AI-Powered-personal-Assistant)](https://github.com/Trojan3877/AI-Powered-personal-Assistant/blob/main/LICENSE)
+
 # 🤖 AI-Powered Personal Assistant
 
-A modular, cloud-native AI Assistant powered by OpenAI, Snowflake, and a DevOps-first architecture. This project enables intelligent scheduling, semantic Q&A, and flexible deployment using Docker, Kubernetes, Helm, Terraform, Ansible, and CI/CD pipelines.
+A modular, cloud-native AI Assistant powered by OpenAI, Snowflake, and a DevOps-first architecture. This project enables intelligent scheduling, semantic Q&A, and flexible deployment using Docker, [...]
 
 ---
 
@@ -20,7 +22,7 @@ A modular, cloud-native AI Assistant powered by OpenAI, Snowflake, and a DevOps-
 
 ## 📘 Extended Description
 
-The AI-Powered Personal Assistant is a full-stack, production-grade LLM application designed for real-world ML use cases and scalable infrastructure. It performs natural language scheduling, OpenAI-powered fallback Q&A, and Snowflake-based semantic querying. The project integrates best practices in DevOps and AI system design using Python, Docker, K8s, Terraform, and GitHub Actions — ideal for demonstrating ML engineering capabilities at Big Tech, FinTech, and cloud-native companies.
+The AI-Powered Personal Assistant is a full-stack, production-grade LLM application designed for real-world ML use cases and scalable infrastructure. It performs natural language scheduling, OpenA[...]
 
 ## 📊 Performance Metrics
 
@@ -84,3 +86,4 @@ kubectl apply -f k8s/deployment.yaml
 
 # Terraform
 cd terraform && terraform init && terraform apply
+```
