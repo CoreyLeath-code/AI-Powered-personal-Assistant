@@ -1,86 +1,48 @@
-# 🤖 AI-Powered Personal Assistant
+# AI-Powered Personal Assistant
+An autonomous, event-driven orchestration system built on a multi-agent supervisor design pattern. The platform intercepts raw, natural language prompts, computes structural semantic targets, routes tasks dynamically to independent sandboxed worker subsystems, and tracks operational state parameters using a GitOps-native data logging engine.
 
-A modular, cloud-native AI Assistant powered by OpenAI, Snowflake, and a DevOps-first architecture. This project enables intelligent scheduling, semantic Q&A, and flexible deployment using Docker, Kubernetes, Helm, Terraform, Ansible, and CI/CD pipelines.
-
----
-
-## 📌 Badges
-![Capstone Project](https://img.shields.io/badge/Capstone-Project-blueviolet?style=for-the-badge&logo=github)
-
-![Status](https://img.shields.io/badge/status-active-brightgreen)
-![License](https://img.shields.io/github/license/Trojan3877/AI-Powered-personal-Assistant)
-![Build](https://img.shields.io/badge/build-passing-success)
-![CI/CD](https://img.shields.io/badge/CI--CD-GitHub%20Actions-blue)
-![OpenAI](https://img.shields.io/badge/ML%20Algo-GPT--3.5%20Turbo-blue)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-ready-blue)
-![Snowflake](https://img.shields.io/badge/Snowflake-supported-lightblue)
-🔄 [Download Superset Dashboard Config](dashboards/superset_ai_performance.json)
+[![System Pipeline](https://img.shields.io/badge/Assistant__Pipeline-Passing-4c1?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/Trojan3877/AI-Powered-personal-Assistant/actions)
+[![Agentic Layout](https://img.shields.io/badge/Architecture-Multi--Agent_Router-8A2BE2?style=for-the-badge&logo=diagrams.net&logoColor=white)](#-system-design-architecture)
+[![Python Engine](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Validation Safety](https://img.shields.io/badge/Validation-Pydantic_Gated-orange?style=flat-square&logo=pydantic&logoColor=white)](#-systems-engineering-qa)
+[![License Model](https://img.shields.io/badge/License-MIT-green?style=flat-square)](https://choosealicense.com/licenses/mit/)
 
 ---
 
-## 📘 Extended Description
+## 🏢 System Design Architecture
 
-The AI-Powered Personal Assistant is a full-stack, production-grade LLM application designed for real-world ML use cases and scalable infrastructure. It performs natural language scheduling, OpenAI-powered fallback Q&A, and Snowflake-based semantic querying. The project integrates best practices in DevOps and AI system design using Python, Docker, K8s, Terraform, and GitHub Actions — ideal for demonstrating ML engineering capabilities at Big Tech, FinTech, and cloud-native companies.
+The architecture relies on a highly decoupled control plane layout. Rather than feeding prompts into an unguided loop, a central supervisor acts as a deterministic state router:
 
-## 📊 Performance Metrics
+```text
+       [User Intent Prompts]
+                 |
+                 v
+     +-----------------------+
+     |   MLOps Supervisor    |
+     |   Routing Core Engine |
+     +-----------------------+
+                 |
+        +--------+--------+
+        |                 |
+        v                 v
++---------------+ +---------------+
+| Memory Agent  | | Search Agent  |
+| (Vector Store)| | (Live Web)    |
++---------------+ +---------------+
+        |                 |
+        +--------+--------+
+                 |
+                 v
+    +-------------------------+
+    |   GitOps Log Append     |
+    |   (DailyLog.md Update)  |
+    +-------------------------+
 
-| Query                                 | Assistant Response                                     | Latency |
-|--------------------------------------|--------------------------------------------------------|---------|
-| What is the capital of France?       | The capital of France is Paris.                        | 1.85s   |
-| Explain Terraform in simple terms.   | Terraform lets you define and provision infra as code. | 2.14s   |
-| Who is the CEO of OpenAI?            | As of 2025, the CEO of OpenAI is Sam Altman.           | 1.72s   |
 
-### 📈 Summary Stats
-
-- ✅ **Accuracy**: 3/3 correct responses (100%)
-- ⚡ **Average Latency**: **1.90 seconds**
-
-
-## 📂 Project Structure
-
-├── assistant/ # Main assistant logic
-├── modules/ # Scheduling and Q&A engines
-├── terraform/ # Infra-as-code setup
-├── ansible/ # Server automation
-├── helm/ # Helm chart for K8s deployment
-├── k8s/ # K8s deployment YAMLs
-├── tests/ # Unit tests
-├── demo.py # CLI E2E assistant interaction
-├── Dockerfile
-├── docker-compose.yaml
-├── Makefile
-├── .env.example
----
-
-## 🛠️ Technologies Used
-
-| Tool           | Purpose                                   |
-|----------------|-------------------------------------------|
-| Python         | Backend logic & NLP processing            |
-| OpenAI         | GPT-3.5 API for fallback reasoning        |
-| Snowflake      | Structured semantic Q&A                   |
-| Docker         | Containerization                          |
-| Kubernetes     | Orchestration                             |
-| Helm           | Deployment templating                     |
-| Terraform      | Infra provisioning (AWS/GCP-ready)        |
-| Ansible        | Server configuration                      |
-| GitHub Actions | CI/CD automation                          |
-
----
-
-## 🚀 Deployment
-
-```bash
-# Local Dev
-make install
-make run
-
-# Docker
-make docker-build
-make docker-run
-
-# Kubernetes
-kubectl apply -f k8s/deployment.yaml
-
-# Terraform
-cd terraform && terraform init && terraform apply
+📊 Enterprise Operating MatrixOperational ComponentTask ResponsibilityLatency BoundariesIsolation BoundarySupervisor CoreRegex/Semantic Intent Routing Matrix$< 15\text{ms}$Central Workflow CoreMemory AgentLong-Term Local Context Embedding Retrievals$< 250\text{ms}$Vector DB LayerSearch AgentHigh-Throughput Live Internet Telemetry Processing$< 1200\text{ms}$External REST API Boundary⚡ Quick Start Sequence1. Initialize Project DirectoryBashgit clone [https://github.com/Trojan3877/AI-Powered-personal-Assistant.git](https://github.com/Trojan3877/AI-Powered-personal-Assistant.git)
+cd AI-Powered-personal-Assistant
+2. Assemble EnvironmentsBashpython -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+3. Run Agent Orchestrator Simulation LocallyBashpython agents/supervisor.py
+🧠 Systems Engineering Q&AQ1: What are the main engineering benefits of a Multi-Agent Router model over an all-in-one conversational layout?Single large prompt loops introduce high semantic noise, token cost bloat, and context decay. By isolating intents into individual worker components, each tool operates within minimal context limits, lowering token footprint costs and increasing inference reliability.Q2: How are data leaks prevented within the assistant's memory layer?The memory context agent uses structural input scrubbing blocks. Data streams must pass validation gates before processing, separating system control configurations from arbitrary external payload contexts.
