@@ -50,5 +50,15 @@ pip install -r requirements.txt
 ---
 
 ## 📊 Performance Metrics
+### 📈 Summary Stats
+## 📊 Performance Metrics
+
+| Query | Assistant Response | Latency |
+|-------|---------------------|---------|
+| What is the capital of France? | The capital of France is Paris. | 1.85s |
+| Explain Terraform in simple terms. | Terraform is an open-source tool that lets you define and provision infrastructure using code. | 2.14s |
+| Who is the CEO of OpenAI? | As of 2025, the CEO of OpenAI is Sam Altman. | 1.72s |
 
 ### 📈 Summary Stats
+- ✅ **Accuracy**: 3/3 correct responses (100%)
+- ⚡ **Average Latency**: **1.90 seconds**
