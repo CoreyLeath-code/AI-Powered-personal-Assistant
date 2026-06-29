@@ -46,3 +46,9 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 3. Run Agent Orchestrator Simulation LocallyBashpython agents/supervisor.py
 🧠 Systems Engineering Q&AQ1: What are the main engineering benefits of a Multi-Agent Router model over an all-in-one conversational layout?Single large prompt loops introduce high semantic noise, token cost bloat, and context decay. By isolating intents into individual worker components, each tool operates within minimal context limits, lowering token footprint costs and increasing inference reliability.Q2: How are data leaks prevented within the assistant's memory layer?The memory context agent uses structural input scrubbing blocks. Data streams must pass validation gates before processing, separating system control configurations from arbitrary external payload contexts.
+
+---
+
+## 📊 Performance Metrics
+
+### 📈 Summary Stats
