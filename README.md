@@ -6,8 +6,17 @@ An autonomous, event-driven orchestration system built on a multi-agent supervis
 [![Python Engine](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![Validation Safety](https://img.shields.io/badge/Validation-Pydantic_Gated-orange?style=flat-square&logo=pydantic&logoColor=white)](#-systems-engineering-qa)
 [![License Model](https://img.shields.io/badge/License-MIT-green?style=flat-square)](https://choosealicense.com/licenses/mit/)
+[![Continuous Integration](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/ci-cd.yml)
+[![Code Quality Assurance](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/ci.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/ci.yml)
+[![Security Analysis](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/security.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/security.yml)
+[![SAST Code Flaw Scan](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/sast.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/sast.yml)
+[![Performance Benchmarks](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/benchmarks.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/benchmarks.yml)
+[![Schema Validation](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/data-validation.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/data-validation.yml)
+[![Automated Release](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/release.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/release.yml)
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
+[![Code Style: Flake8](https://img.shields.io/badge/code%20style-flake8-black)](https://flake8.pycqa.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
----
 
 ## 🏢 System Design Architecture
 
