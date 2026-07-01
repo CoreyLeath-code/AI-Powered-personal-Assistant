@@ -73,6 +73,10 @@ pip install -r requirements.txt
 - ✅ **Accuracy**: 3/3 correct responses (100%)
 - ⚡ **Average Latency**: **1.90 seconds**
 ## 📊 Performance Metrics
+### 📈 Summary Stats
+- ✅ **Accuracy**: 3/3 correct responses (100%)
+- ⚡ **Average Latency**: **1.90 seconds**
+## 📊 Performance Metrics
 
 | Query | Assistant Response | Latency |
 |-------|---------------------|---------|
