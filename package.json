@@ -1,0 +1,12 @@
+{
+  "name": "ai-powered-personal-assistant",
+  "version": "1.0.0",
+  "description": "Enterprise-grade AI Assistant",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant.git"
+  },
+  "release": {
+    "branches": ["main"]
+  }
+}
