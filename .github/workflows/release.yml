@@ -1,26 +1,19 @@
-name: Automated Release Engineering
-
+name: Release
 on:
   push:
     branches:
       - main
-
 jobs:
-  tagging-engine:
-    name: Construct Semantic Version Tags
+  release:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
     steps:
-      - name: ⬇️ Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          fetch-depth: 0
-
-      - name: 🏷️ Calculate Release Version Alpha
-        uses: anothrNick/github-tag-action@1.64.0
+          node-version: '20'
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          semantic_version: 18
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
-          DEFAULT_BUMP: patch
