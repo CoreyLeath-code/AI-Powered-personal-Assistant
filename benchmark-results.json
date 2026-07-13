@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "generated_at": "2026-07-12T23:49:20.592943+00:00",
+    "iterations": 500,
+    "harness": "benchmarks/assistant_benchmarks.py"
+  },
+  "benchmarks": {
+    "intent_router_qa": {
+      "iterations": 500,
+      "mean_ms": 0.001144,
+      "median_ms": 0.0011,
+      "p95_ms": 0.0012,
+      "min_ms": 0.001,
+      "max_ms": 0.0144
+    },
+    "intent_router_schedule": {
+      "iterations": 500,
+      "mean_ms": 0.003916,
+      "median_ms": 0.003,
+      "p95_ms": 0.006,
+      "min_ms": 0.0029,
+      "max_ms": 0.0326
+    },
+    "intent_router_fallback": {
+      "iterations": 500,
+      "mean_ms": 0.000982,
+      "median_ms": 0.001,
+      "p95_ms": 0.001,
+      "min_ms": 0.0009,
+      "max_ms": 0.0043
+    },
+    "supervisor_memory_route": {
+      "iterations": 500,
+      "mean_ms": 0.29132,
+      "median_ms": 0.25865,
+      "p95_ms": 0.4074,
+      "min_ms": 0.2188,
+      "max_ms": 1.8684
+    },
+    "supervisor_search_route": {
+      "iterations": 500,
+      "mean_ms": 0.266136,
+      "median_ms": 0.2445,
+      "p95_ms": 0.3564,
+      "min_ms": 0.2176,
+      "max_ms": 0.6007
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
 
 class LocalLLMEngine:
     def __init__(self, model_name: str = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"):

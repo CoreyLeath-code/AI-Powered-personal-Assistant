@@ -1,5 +1,4 @@
 # tests/test_main.py
-import pytest
 from assistant import main
 
 

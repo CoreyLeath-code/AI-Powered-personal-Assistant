@@ -1,0 +1,2 @@
+# Optional data warehouse integration dependencies
+snowflake-connector-python>=3.13,<4.0

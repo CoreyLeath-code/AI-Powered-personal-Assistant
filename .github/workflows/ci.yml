@@ -2,30 +2,48 @@ name: Code Quality Assurance
 
 on:
   push:
-    branches: [ main ]
+    branches: ["main"]
   pull_request:
-    branches: [ main ]
+    branches: ["main"]
+
+permissions:
+  contents: read
 
 jobs:
-  style-compliance:
-    name: Code Hygiene Enforcement
+  code-quality:
+    name: Ruff and Compile Validation
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: 🐍 Set up Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
 
-      - name: 📦 Provision Linting Binaries
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install flake8
+          python -m pip install -r requirements.txt -r requirements-dev.txt
 
-      # FIXED: Added F541 to ignore empty f-strings, ensuring rapid multi-agent scaffolding doesn't trigger build fails
-      - name: 🚀 Verify PEP 8 Alignment
-        run: flake8 . --ignore=W293,W291,F401,E302,E305,E701,E203,E501,E261,W292,W391,E221,E201,E202,E241,E401,E402,E226,E231,E722,F821,F541 --exclude=venv,.git,__pycache__,build,dist
+      - name: Run Ruff
+        run: ruff check .
+
+      - name: Compile Python modules
+        run: python -m compileall -q assistant modules agents scripts src
+
+      - name: Workflow summary
+        if: always()
+        run: |
+          {
+            echo "## Code Quality Summary"
+            echo ""
+            echo "- Linter: Ruff"
+            echo "- Compile target: assistant, modules, agents, scripts, src"
+          } >> "$GITHUB_STEP_SUMMARY"

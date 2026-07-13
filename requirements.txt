@@ -1,12 +1,4 @@
-# Python Requirements for AI-Powered Personal Assistant
-
-openai==1.14.3
-python-dotenv==1.0.1
-snowflake-connector-python==3.13.1
-requests==2.31.0
-pandas==2.2.2
-streamlit==1.35.0
-pytest==8.2.0
-torch>=2.0.0
-transformers>=4.30.0
-opencv-python-headless
+# Core runtime dependencies
+openai>=1.14,<2.0
+python-dotenv>=1.0,<2.0
+requests>=2.31,<3.0

@@ -1,24 +1,33 @@
 name: Release
+
 on:
   push:
-    branches:
-      - main
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+
 jobs:
   release:
+    name: Publish GitHub Release
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
         with:
-          node-version: '20'
-      - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v4
-        with:
-          semantic_version: 18
-          # Explicitly define 'main' as the release branch
-          branches: |
-            [
-              'main'
-            ]
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          generate_release_notes: true
+
+      - name: Workflow summary
+        if: always()
+        run: |
+          {
+            echo "## Release Summary"
+            echo ""
+            echo "- Trigger: version tag"
+            echo "- Release notes: generated"
+          } >> "$GITHUB_STEP_SUMMARY"
