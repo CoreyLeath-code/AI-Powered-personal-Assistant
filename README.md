@@ -1,101 +1,114 @@
 # AI-Powered Personal Assistant
-An autonomous, event-driven orchestration system built on a multi-agent supervisor design pattern. The platform intercepts raw, natural language prompts, computes structural semantic targets, routes tasks dynamically to independent sandboxed worker subsystems, and tracks operational state parameters using a GitOps-native data logging engine.
 
-[![System Pipeline](https://img.shields.io/badge/Assistant__Pipeline-Passing-4c1?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/Trojan3877/AI-Powered-personal-Assistant/actions)
-[![Agentic Layout](https://img.shields.io/badge/Architecture-Multi--Agent_Router-8A2BE2?style=for-the-badge&logo=diagrams.net&logoColor=white)](#-system-design-architecture)
-[![Python Engine](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
-[![Validation Safety](https://img.shields.io/badge/Validation-Pydantic_Gated-orange?style=flat-square&logo=pydantic&logoColor=white)](#-systems-engineering-qa)
-[![License Model](https://img.shields.io/badge/License-MIT-green?style=flat-square)](https://choosealicense.com/licenses/mit/)
-[![Continuous Integration](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/ci-cd.yml)
-[![Code Quality Assurance](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/ci.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/ci.yml)
-[![Security Analysis](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/security.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/security.yml)
-[![SAST Code Flaw Scan](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/sast.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/sast.yml)
-[![Performance Benchmarks](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/benchmarks.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/benchmarks.yml)
-[![Schema Validation](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/data-validation.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/data-validation.yml)
-[![Automated Release](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/release.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/release.yml)
-[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
-[![Code Style: Flake8](https://img.shields.io/badge/code%20style-flake8-black)](https://flake8.pycqa.org/)
+[![CI](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/ci-cd.yml)
+[![Code Quality](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/ci.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/ci.yml)
+[![Benchmarks](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/benchmarks.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/benchmarks.yml)
+[![Security](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/security.yml/badge.svg)](https://github.com/CoreyLeath-code/AI-Powered-personal-Assistant/actions/workflows/security.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+An autonomous personal-assistant prototype built around deterministic intent routing,
+scheduling utilities, optional OpenAI-backed question answering, and GitOps-friendly
+execution logs. The project is intentionally lightweight in its core path so tests,
+benchmarks, and container builds can run without model downloads or live API calls.
 
-## 🏢 System Design Architecture
-
-The architecture relies on a highly decoupled control plane layout. Rather than feeding prompts into an unguided loop, a central supervisor acts as a deterministic state router:
+## Architecture
 
 ```text
-       [User Intent Prompts]
-                 |
-                 v
-     +-----------------------+
-     |   MLOps Supervisor    |
-     |   Routing Core Engine |
-     +-----------------------+
-                 |
-        +--------+--------+
-        |                 |
-        v                 v
-+---------------+ +---------------+
-| Memory Agent  | | Search Agent  |
-| (Vector Store)| | (Live Web)    |
-+---------------+ +---------------+
-        |                 |
-        +--------+--------+
-                 |
-                 v
-    +-------------------------+
-    |   GitOps Log Append     |
-    |   (DailyLog.md Update)  |
-    +-------------------------+
+User Prompt
+   |
+   v
+Assistant Router
+   |-- schedule/reminder intent --> Scheduler module
+   |-- question/explanation intent -> QA module
+   |-- portfolio/profile intent ---> Supervisor memory worker
+   |-- latest/search intent -------> Supervisor search worker
+   `-- fallback -------------------> Optional OpenAI client
 
+Operational logs
+   |
+   v
+DailyLog.md / logs/session_log.json / benchmark-results.json
+```
 
-📊 Enterprise Operating MatrixOperational ComponentTask ResponsibilityLatency BoundariesIsolation BoundarySupervisor CoreRegex/Semantic Intent Routing Matrix$< 15\text{ms}$Central Workflow CoreMemory AgentLong-Term Local Context Embedding Retrievals$< 250\text{ms}$Vector DB LayerSearch AgentHigh-Throughput Live Internet Telemetry Processing$< 1200\text{ms}$External REST API Boundary⚡ Quick Start Sequence1. Initialize Project DirectoryBashgit clone [https://github.com/Trojan3877/AI-Powered-personal-Assistant.git](https://github.com/Trojan3877/AI-Powered-personal-Assistant.git)
-cd AI-Powered-personal-Assistant
-2. Assemble EnvironmentsBashpython -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-3. Run Agent Orchestrator Simulation LocallyBashpython agents/supervisor.py
-🧠 Systems Engineering Q&AQ1: What are the main engineering benefits of a Multi-Agent Router model over an all-in-one conversational layout?Single large prompt loops introduce high semantic noise, token cost bloat, and context decay. By isolating intents into individual worker components, each tool operates within minimal context limits, lowering token footprint costs and increasing inference reliability.Q2: How are data leaks prevented within the assistant's memory layer?The memory context agent uses structural input scrubbing blocks. Data streams must pass validation gates before processing, separating system control configurations from arbitrary external payload contexts.
+## Research Metrics And Benchmarks
 
----
+The table separates measured repository evidence from target service objectives.
+Measured values come from the deterministic benchmark harness and sample log data in
+this repository. Target values are engineering goals for a productionized assistant
+service and should be revalidated against live infrastructure before use in an SLA.
 
-## 📊 Performance Metrics
-### 📈 Summary Stats
-## 📊 Performance Metrics
-### 📈 Summary Stats
-- ✅ **Accuracy**: 3/3 correct responses (100%)
-- ⚡ **Average Latency**: **1.90 seconds**
-## 📊 Performance Metrics
-### 📈 Summary Stats
-- ✅ **Accuracy**: 3/3 correct responses (100%)
-- ⚡ **Average Latency**: **1.90 seconds**
-## 📊 Performance Metrics
-### 📈 Summary Stats
-- ✅ **Accuracy**: 3/3 correct responses (100%)
-- ⚡ **Average Latency**: **1.90 seconds**
-## 📊 Performance Metrics
-### 📈 Summary Stats
-- ✅ **Accuracy**: 3/3 correct responses (100%)
-- ⚡ **Average Latency**: **1.90 seconds**
-## 📊 Performance Metrics
-### 📈 Summary Stats
-- ✅ **Accuracy**: 3/3 correct responses (100%)
-- ⚡ **Average Latency**: **1.90 seconds**
-## 📊 Performance Metrics
-### 📈 Summary Stats
-- ✅ **Accuracy**: 3/3 correct responses (100%)
-- ⚡ **Average Latency**: **1.90 seconds**
-## 📊 Performance Metrics
-### 📈 Summary Stats
-- ✅ **Accuracy**: 3/3 correct responses (100%)
-- ⚡ **Average Latency**: **1.90 seconds**
-## 📊 Performance Metrics
+### Recorded Benchmark Results
 
-| Query | Assistant Response | Latency |
-|-------|---------------------|---------|
-| What is the capital of France? | The capital of France is Paris. | 1.85s |
-| Explain Terraform in simple terms. | Terraform is an open-source tool that lets you define and provision infrastructure using code. | 2.14s |
-| Who is the CEO of OpenAI? | As of 2025, the CEO of OpenAI is Sam Altman. | 1.72s |
+Latest local benchmark command:
 
-### 📈 Summary Stats
-- ✅ **Accuracy**: 3/3 correct responses (100%)
-- ⚡ **Average Latency**: **1.90 seconds**
+```bash
+python benchmarks/assistant_benchmarks.py --iterations 500 --output benchmark-results.json
+```
+
+| Benchmark | Metric | Recorded value | Evidence |
+|---|---:|---:|---|
+| Intent router, QA path | Mean latency | 0.001144 ms | `benchmark-results.json` |
+| Intent router, schedule path | Mean latency | 0.003916 ms | `benchmark-results.json` |
+| Intent router, fallback path | Mean latency | 0.000982 ms | `benchmark-results.json` |
+| Supervisor memory route | Mean latency | 0.291320 ms | `benchmark-results.json` |
+| Supervisor search route | Mean latency | 0.266136 ms | `benchmark-results.json` |
+| Sample QA log | Mean recorded latency | 1.90 s | `logs/session_log.json` |
+| Sample QA log | Correct sample responses | 3 / 3 | `logs/session_log.json` |
+
+### Engineering Quality Metrics
+
+| Dimension | Current repository status | Industry-readiness signal |
+|---|---|---|
+| Test execution | 22 deterministic tests with 96% local coverage | No live OpenAI/Snowflake calls in CI |
+| Benchmark publishing | Dedicated JSON harness with `python -m json.tool` validation in Actions | Benchmark artifacts are machine-readable |
+| Dependency strategy | Core, dev, dashboard, and ML dependencies split by use case | CI avoids heavyweight model downloads |
+| Static checks | Ruff, pytest, coverage, compile validation, Bandit, and TruffleHog workflows | Failures are no longer masked by `|| echo` |
+| Documentation quality | README metrics distinguish measured results from targets | Avoids overstating production readiness |
+| Container path | Docker installs core runtime requirements only | Smaller, faster default image |
+
+### Production Target Metrics
+
+| Capability | Target | Rationale |
+|---|---:|---|
+| Router p95 latency | < 25 ms | Deterministic keyword routing should stay CPU-local |
+| Scheduler p95 latency | < 50 ms | Calendar parsing can remain synchronous until external APIs are introduced |
+| QA fallback availability | 99.9% | Requires provider timeout/retry/circuit-breaker controls |
+| Benchmark JSON validity | 100% of runs | Required for reliable dashboard publishing |
+| CI signal quality | 0 masked failures | Build status should represent real repository health |
+| Secrets exposure tolerance | 0 verified findings | Required before production deployment |
+
+## Quick Start
+
+```bash
+python -m venv .venv
+. .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt -r requirements-dev.txt
+pytest
+```
+
+Optional extras:
+
+```bash
+python -m pip install -r requirements-dashboard.txt  # Streamlit dashboard
+python -m pip install -r requirements-ml.txt         # Local transformer engine
+```
+
+## Validation
+
+```bash
+ruff check .
+pytest --cov=assistant --cov=modules --cov=agents --cov=scripts --cov-report=term-missing
+python benchmarks/assistant_benchmarks.py --output benchmark-results.json
+python -m json.tool benchmark-results.json
+python -m compileall -q assistant modules agents scripts src
+```
+
+## Known Gaps
+
+- The OpenAI and Snowflake integrations are adapter stubs, not production credential
+  management or retry systems.
+- `logs/session_log.json` is a small recorded sample, not a statistically significant
+  evaluation dataset.
+- The local transformer engine is optional and intentionally excluded from default CI
+  because model downloads make routine validation slow and flaky.

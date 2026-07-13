@@ -1,5 +1,4 @@
 # tests/test_qa.py
-import pytest
 from modules import qa
 
 
@@ -16,3 +15,17 @@ def test_answer_query_with_empty_input(monkeypatch):
 
     result = qa.answer_query("")
     assert "Please ask" in result
+
+
+def test_query_openai_without_api_key(monkeypatch):
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+
+    result = qa.query_openai("What changed?")
+
+    assert "OPENAI_API_KEY" in result
+
+
+def test_query_snowflake_placeholder():
+    result = qa.query_snowflake("portfolio")
+
+    assert "[Snowflake]" in result

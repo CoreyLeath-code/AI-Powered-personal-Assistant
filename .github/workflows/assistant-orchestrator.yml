@@ -1,57 +1,60 @@
-# .github/workflows/assistant-orchestrator.yml
 name: AI Assistant Autonomous Agent Execution Loop
 
 on:
   schedule:
-    # Runs automatically every day at 06:00 UTC
-    - cron: '0 6 * * *'
-  push:
-    branches:
-      - main
-  workflow_dispatch: # Allows you to manually trigger it from the Actions UI anytime
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   run-assistant:
+    name: Scheduled Supervisor Smoke Run
     runs-on: ubuntu-latest
-    
-    # Grants explicit write clearance to bypass 403 Forbidden Git push rejections
-    permissions:
-      contents: write
 
     steps:
-    - name: Checkout Repository Code
-      uses: actions/checkout@v4
-      with:
-        persist-credentials: true
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
-    - name: Set up Python Runtime
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-        cache: 'pip'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
 
-    - name: Install System Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        # Installs core dependencies for structured AI development
-        pip install pyyaml openai langchain Pydantic
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
 
-    - name: Execute Assistant Supervisor Loop
-      env:
-        PYTHONPATH: .
-        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }} # Optional secure hook if you connect live LLMs later
-      run: |
-        python agents/supervisor.py
+      - name: Execute assistant supervisor loop
+        env:
+          PYTHONPATH: .
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python agents/supervisor.py
 
-    - name: GitOps Auto-Commit Assistant Logs to DailyLog.md
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action [Assistant Agent]"
-        
-        git add DailyLog.md
-        if ! git diff --cached --quiet; then
-          git commit -m "chore: autonomous personal assistant tracking update [skip ci]"
-          git push origin main
-        else
-          echo "No routine tasks written to DailyLog.md today."
-        fi
+      - name: Commit assistant logs
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action [Assistant Agent]"
+          git add DailyLog.md
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: autonomous personal assistant tracking update [skip ci]"
+            git push origin main
+          else
+            echo "No routine tasks written to DailyLog.md today."
+          fi
+
+      - name: Workflow summary
+        if: always()
+        run: |
+          {
+            echo "## Assistant Orchestrator Summary"
+            echo ""
+            echo "- Script: agents/supervisor.py"
+            echo "- Log target: DailyLog.md"
+          } >> "$GITHUB_STEP_SUMMARY"

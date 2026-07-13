@@ -1,7 +1,6 @@
 # tests/test_performance_metrics.py
 import time
-import pytest
-from unittest.mock import patch
+
 from assistant.main import process_user_input
 
 

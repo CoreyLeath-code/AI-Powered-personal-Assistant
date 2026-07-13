@@ -21,6 +21,8 @@ env/
 
 # Pytest / coverage
 .pytest_cache/
+.pytest_tmp/
+.pip-audit-cache/
 .coverage
 htmlcov/
 *.log

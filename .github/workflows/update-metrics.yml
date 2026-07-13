@@ -1,57 +1,43 @@
-# .github/workflows/update-metrics.yml
 name: Generate README Metrics Table
 
 on:
   push:
-    branches: [ main ]
+    branches: ["main"]
   pull_request:
-    branches: [ main ]
+    branches: ["main"]
+
+permissions:
+  contents: read
 
 jobs:
   generate-metrics:
+    name: Generate Metrics Preview
     runs-on: ubuntu-latest
-    name: Generate README Metrics Table
-    
-    # Grants explicit write permissions to eliminate the 403 remote push rejection error
-    permissions:
-      contents: write
 
     steps:
-      - name: ⬇️ Checkout Repository
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: 🐍 Set Up Python
-        uses: actions/setup-python@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: "3.11"
 
-      - name: 📦 Install Dependencies
-        run: |
-          pip install -r requirements.txt || true
+      - name: Generate metrics Markdown
+        run: python scripts/generate_metrics_table.py > README_METRICS.md
 
-      - name: 🧠 Run Metrics Script
-        run: |
-          python scripts/generate_metrics_table.py > TEMP_METRICS.md
-          echo "Replacing metrics block..."
-          awk '/## 📊 Performance Metrics/{flag=1; print; next} /### 📈 Summary Stats/{flag=0} !flag' README.md > TEMP_README.md
-          cat TEMP_METRICS.md >> TEMP_README.md
-          mv TEMP_README.md README.md
+      - name: Upload metrics preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: readme-metrics-preview
+          path: README_METRICS.md
 
-      - name: ✅ Commit & Push Updated README
+      - name: Workflow summary
+        if: always()
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          
-          # Verify modifications are present before initializing commit sequence
-          if ! git diff --cached --quiet; then
-            git commit -m "🤖 Auto-update README performance metrics"
-            
-            # Sync any parallel agent mutations to prevent push race-conditions
-            git pull --rebase origin main
-            git push
-          else
-            echo "No variations detected; skipping push sequence."
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          {
+            echo "## Metrics Preview Summary"
+            echo ""
+            echo "- Generated artifact: README_METRICS.md"
+            echo "- README updates remain reviewed changes, not bot pushes"
+          } >> "$GITHUB_STEP_SUMMARY"
