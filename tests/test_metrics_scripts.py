@@ -1,8 +1,35 @@
 import csv
 import json
 
+import pytest
+
 from scripts.export_to_csv import export_to_csv
-from scripts.generate_metrics_table import load_entries, parse_latency_seconds, render_metrics_table
+from scripts.generate_metrics_table import (
+    format_row,
+    load_entries,
+    parse_latency_seconds,
+    render_metrics_table,
+)
+
+
+@pytest.mark.parametrize(
+    ("entry", "expected"),
+    [
+        ({"input": "", "output": "", "latency": ""}, "|  |  |  |"),
+        ({"input": 0, "output": False, "latency": 0}, "| 0 | False | 0 |"),
+    ],
+)
+def test_format_row_formats_empty_and_non_string_values(entry, expected):
+    assert format_row(entry) == expected
+
+
+@pytest.mark.parametrize("missing_key", ["input", "output", "latency"])
+def test_format_row_requires_each_session_field(missing_key):
+    entry = {"input": "Question", "output": "Answer", "latency": "1.00s"}
+    del entry[missing_key]
+
+    with pytest.raises(KeyError, match=missing_key):
+        format_row(entry)
 
 
 def test_parse_latency_seconds():
