@@ -20,7 +20,14 @@ def parse_latency_seconds(value: str) -> float:
 
 def format_row(entry: dict) -> str:
     """Format one session entry as a Markdown table row."""
-    return f"| {entry['input']} | {entry['output']} | {entry['latency']} |"
+    def escape_cell(value: object) -> str:
+        return str(value).replace("\\", "\\\\").replace("|", "\\|").replace("\n", "<br>")
+
+    return "| {} | {} | {} |".format(
+        escape_cell(entry["input"]),
+        escape_cell(entry["output"]),
+        escape_cell(entry["latency"]),
+    )
 
 
 def render_metrics_table(entries: list[dict]) -> str:

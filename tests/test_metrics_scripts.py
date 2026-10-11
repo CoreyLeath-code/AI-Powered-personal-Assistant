@@ -2,7 +2,13 @@ import csv
 import json
 
 from scripts.export_to_csv import export_to_csv
-from scripts.generate_metrics_table import load_entries, parse_latency_seconds, render_metrics_table
+from scripts.generate_metrics_table import format_row, load_entries, parse_latency_seconds, render_metrics_table
+
+
+def test_format_row_preserves_unicode_and_cell_boundaries():
+    entry = {"input": "café | 東京", "output": "first\nsecond | \\ value", "latency": ""}
+
+    assert format_row(entry) == r"| café \| 東京 | first<br>second \| \\ value |  |"
 
 
 def test_parse_latency_seconds():
