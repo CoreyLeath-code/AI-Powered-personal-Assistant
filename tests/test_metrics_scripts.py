@@ -2,7 +2,12 @@ import csv
 import json
 
 from scripts.export_to_csv import export_to_csv
-from scripts.generate_metrics_table import format_row, load_entries, parse_latency_seconds, render_metrics_table
+from scripts.generate_metrics_table import (
+    format_row,
+    load_entries,
+    parse_latency_seconds,
+    render_metrics_table,
+)
 
 
 def test_format_row_preserves_unicode_and_cell_boundaries():
